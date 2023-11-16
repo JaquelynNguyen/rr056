@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
  * opmode only serves as an initial starting point.
  */
 @Autonomous(name = "CloseBlue", group = "advanced")
-@Disabled
+//@Disabled
 public class CloseBlue extends LinearOpMode {
     private Servo claw;
 
@@ -49,20 +49,22 @@ public class CloseBlue extends LinearOpMode {
         TRAJECTORY_3L,
         TURN_1L,
         TRAJECTORY_4L,
-        DROP_L,
         TRAJECTORY_5L,
-        RETRACT_L,
+        DROP_L,
         TRAJECTORY_6L,
+        RETRACT_L,
         TRAJECTORY_7L,
+        TRAJECTORY_8L,
         TRAJECTORY_1M,
         TRAJECTORY_2M,
         TURN_1M,
         TRAJECTORY_3M,
-        DROP_M,
         TRAJECTORY_4M,
-        RETRACT_M,
+        DROP_M,
         TRAJECTORY_5M,
+        RETRACT_M,
         TRAJECTORY_6M,
+        TRAJECTORY_7M,
         TRAJECTORY_1R,
         TRAJECTORY_2R,
         TRAJECTORY_3R,
@@ -70,11 +72,12 @@ public class CloseBlue extends LinearOpMode {
         TRAJECTORY_5R,
         TURN_1R,
         TRAJECTORY_6R,
-        DROP_R,
         TRAJECTORY_7R,
-        RETRACT_R,
+        DROP_R,
         TRAJECTORY_8R,
+        RETRACT_R,
         TRAJECTORY_9R,
+        TRAJECTORY_10R,
         IDLE            // Our bot will enter the IDLE state when done
     }
 
@@ -121,16 +124,18 @@ public class CloseBlue extends LinearOpMode {
                     arm.setPosition(Arm.Presets.OUTTAKE_POSITION);
                 })
                 .lineToConstantHeading(new Vector2d(-48, -42))
+                .build();
+        Trajectory trajectory5L = drive.trajectoryBuilder(trajectory4L.end())
                 .forward(3)
                 .build();
 //drop
-        Trajectory trajectory5L = drive.trajectoryBuilder(trajectory4L.end())
+        Trajectory trajectory6L = drive.trajectoryBuilder(trajectory5L.end())
                 .back(3)
                 .build();
-        Trajectory trajectory6L = drive.trajectoryBuilder(trajectory5L.end())
+        Trajectory trajectory7L = drive.trajectoryBuilder(trajectory6L.end())
                 .strafeRight(32)
                 .build();
-        Trajectory trajectory7L = drive.trajectoryBuilder(trajectory6L.end())
+        Trajectory trajectory8L = drive.trajectoryBuilder(trajectory7L.end())
                 .forward(10)
                 .build();
 
@@ -148,16 +153,18 @@ public class CloseBlue extends LinearOpMode {
                     arm.setPosition(Arm.Presets.OUTTAKE_POSITION);
                 })
                 .lineToConstantHeading(new Vector2d(-48, -35.5))
+                .build();
+        Trajectory trajectory4M = drive.trajectoryBuilder(trajectory3M.end())
                 .forward(3)
                 .build();
 //drop
-        Trajectory trajectory4M = drive.trajectoryBuilder(trajectory3M.end())
+        Trajectory trajectory5M = drive.trajectoryBuilder(trajectory4M.end())
                 .back(3)
                 .build();
-        Trajectory trajectory5M = drive.trajectoryBuilder(trajectory4M.end())
+        Trajectory trajectory6M = drive.trajectoryBuilder(trajectory5M.end())
                 .strafeRight(26)
                 .build();
-        Trajectory trajectory6M = drive.trajectoryBuilder(trajectory5M.end())
+        Trajectory trajectory7M = drive.trajectoryBuilder(trajectory6M.end())
                 .forward(10)
                 .build();
 
@@ -184,16 +191,18 @@ public class CloseBlue extends LinearOpMode {
                     arm.setPosition(Arm.Presets.OUTTAKE_POSITION);
                 })
                 .lineToConstantHeading(new Vector2d(-48, -29))
+                .build();
+        Trajectory trajectory7R = drive.trajectoryBuilder(trajectory6R.end())
                 .forward(3)
                 .build();
 //drop
-        Trajectory trajectory7R = drive.trajectoryBuilder(trajectory6R.end())
+        Trajectory trajectory8R = drive.trajectoryBuilder(trajectory7R.end())
                 .back(3)
                 .build();
-        Trajectory trajectory8R = drive.trajectoryBuilder(trajectory7R.end())
+        Trajectory trajectory9R = drive.trajectoryBuilder(trajectory8R.end())
                 .strafeRight(18)
                 .build();
-        Trajectory trajectory9R = drive.trajectoryBuilder(trajectory8R.end())
+        Trajectory trajectory10R = drive.trajectoryBuilder(trajectory9R.end())
                 .forward(10)
                 .build();
 
@@ -257,6 +266,12 @@ public class CloseBlue extends LinearOpMode {
                     break;
                 case TRAJECTORY_4L:
                     if (!drive.isBusy()) {
+                        currentState = State.TRAJECTORY_5L;
+                        drive.followTrajectoryAsync(trajectory5L);
+                    }
+                    break;
+                case TRAJECTORY_5L:
+                    if (!drive.isBusy()) {
                         currentState = State.DROP_L;
                         timer.reset();
                         arm.setDropping(true);
@@ -265,11 +280,11 @@ public class CloseBlue extends LinearOpMode {
                 case DROP_L:
                     if (timer.seconds() > 1.5) {
                         arm.setDropping(false);
-                        currentState = State.TRAJECTORY_5L;
-                        drive.followTrajectoryAsync(trajectory5L);
+                        currentState = State.TRAJECTORY_6L;
+                        drive.followTrajectoryAsync(trajectory6L);
                     }
                     break;
-                case TRAJECTORY_5L:
+                case TRAJECTORY_6L:
                     if (!drive.isBusy()) {
                         currentState = State.RETRACT_L;
                     }
@@ -279,17 +294,17 @@ public class CloseBlue extends LinearOpMode {
                     lift.setTarget(Lift.Presets.LOW_DROP);
                     arm.setPosition(Arm.Presets.OUTTAKE_POSITION);
                     if (timer.seconds() > 1.5) {
-                        currentState = State.TRAJECTORY_6L;
-                        drive.followTrajectoryAsync(trajectory6L);
-                    }
-                    break;
-                case TRAJECTORY_6L:
-                    if (!drive.isBusy()) {
                         currentState = State.TRAJECTORY_7L;
                         drive.followTrajectoryAsync(trajectory7L);
                     }
                     break;
                 case TRAJECTORY_7L:
+                    if (!drive.isBusy()) {
+                        currentState = State.TRAJECTORY_8L;
+                        drive.followTrajectoryAsync(trajectory8L);
+                    }
+                    break;
+                case TRAJECTORY_8L:
                     if (!drive.isBusy()) {
                         currentState = State.IDLE;
                     }
@@ -321,6 +336,12 @@ public class CloseBlue extends LinearOpMode {
                     break;
                 case TRAJECTORY_3M:
                     if (!drive.isBusy()) {
+                        currentState = State.TRAJECTORY_4M;
+                        drive.followTrajectoryAsync(trajectory4M);
+                    }
+                    break;
+                case TRAJECTORY_4M:
+                    if (!drive.isBusy()) {
                         currentState = State.DROP_M;
                         timer.reset();
                         arm.setDropping(true);
@@ -329,11 +350,11 @@ public class CloseBlue extends LinearOpMode {
                 case DROP_M:
                     if (timer.seconds() > 1.5) {
                         arm.setDropping(false);
-                        currentState = State.TRAJECTORY_4M;
-                        drive.followTrajectoryAsync(trajectory4M);
+                        currentState = State.TRAJECTORY_5M;
+                        drive.followTrajectoryAsync(trajectory5M);
                     }
                     break;
-                case TRAJECTORY_4M:
+                case TRAJECTORY_5M:
                     if (!drive.isBusy()) {
                         currentState = State.RETRACT_M;
                     }
@@ -343,17 +364,17 @@ public class CloseBlue extends LinearOpMode {
                     lift.setTarget(Lift.Presets.LOW_DROP);
                     arm.setPosition(Arm.Presets.OUTTAKE_POSITION);
                     if (timer.seconds() > 1.5) {
-                        currentState = State.TRAJECTORY_5M;
-                        drive.followTrajectoryAsync(trajectory5M);
-                    }
-                    break;
-                case TRAJECTORY_5M:
-                    if (!drive.isBusy()) {
                         currentState = State.TRAJECTORY_6M;
                         drive.followTrajectoryAsync(trajectory6M);
                     }
                     break;
                 case TRAJECTORY_6M:
+                    if (!drive.isBusy()) {
+                        currentState = State.TRAJECTORY_7M;
+                        drive.followTrajectoryAsync(trajectory7M);
+                    }
+                    break;
+                case TRAJECTORY_7M:
                     if (!drive.isBusy()) {
                         currentState = State.IDLE;
                     }
@@ -371,7 +392,7 @@ public class CloseBlue extends LinearOpMode {
                 case TRAJECTORY_2R:
                     if (!drive.isBusy()) {
                         currentState = State.TRAJECTORY_3R;
-                        drive.followTrajectoryAsync(trajectory2R);
+                        drive.followTrajectoryAsync(trajectory3R);
                     }
                     break;
                 case TRAJECTORY_3R:
@@ -400,6 +421,12 @@ public class CloseBlue extends LinearOpMode {
                     break;
                 case TRAJECTORY_6R:
                     if (!drive.isBusy()) {
+                        currentState = State.TRAJECTORY_7R;
+                        drive.followTrajectoryAsync(trajectory7R);
+                    }
+                    break;
+                case TRAJECTORY_7R:
+                    if (!drive.isBusy()) {
                         currentState = State.DROP_R;
                         timer.reset();
                         arm.setDropping(true);
@@ -408,11 +435,11 @@ public class CloseBlue extends LinearOpMode {
                 case DROP_R:
                     if (timer.seconds() > 1.5) {
                         arm.setDropping(false);
-                        currentState = State.TRAJECTORY_7R;
-                        drive.followTrajectoryAsync(trajectory7R);
+                        currentState = State.TRAJECTORY_8R;
+                        drive.followTrajectoryAsync(trajectory8R);
                     }
                     break;
-                case TRAJECTORY_7R:
+                case TRAJECTORY_8R:
                     if (!drive.isBusy()) {
                         currentState = State.RETRACT_R;
                     }
@@ -422,17 +449,17 @@ public class CloseBlue extends LinearOpMode {
                     lift.setTarget(Lift.Presets.LOW_DROP);
                     arm.setPosition(Arm.Presets.OUTTAKE_POSITION);
                     if (timer.seconds() > 1.5) {
-                        currentState = State.TRAJECTORY_8R;
-                        drive.followTrajectoryAsync(trajectory8R);
-                    }
-                    break;
-                case TRAJECTORY_8R:
-                    if (!drive.isBusy()) {
                         currentState = State.TRAJECTORY_9R;
                         drive.followTrajectoryAsync(trajectory9R);
                     }
                     break;
                 case TRAJECTORY_9R:
+                    if (!drive.isBusy()) {
+                        currentState = State.TRAJECTORY_10R;
+                        drive.followTrajectoryAsync(trajectory10R);
+                    }
+                    break;
+                case TRAJECTORY_10R:
                     if (!drive.isBusy()) {
                         currentState = State.IDLE;
                     }
