@@ -41,6 +41,8 @@ public class Arm {
     public void update(){
         if(dropping) {
             dropbox.setPower(-1);
+        } else {
+            dropbox.setPower(0);
         }
     }
 }

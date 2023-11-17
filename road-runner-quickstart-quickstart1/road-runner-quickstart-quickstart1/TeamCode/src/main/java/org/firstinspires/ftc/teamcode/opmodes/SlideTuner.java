@@ -109,16 +109,16 @@ public class SlideTuner extends LinearOpMode {
                     setPZero();
                     encoderFunction();
                     runtime.reset();
-                    while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 18.5 / 24.0 - 24 * COUNTS_PER_INCH) > 20) &&
-                            (Math.abs(Math.abs(back_right.getCurrentPosition()) * 18.5 / 24.0 - 24 * COUNTS_PER_INCH ) > 20) &&
-                            (Math.abs(Math.abs(front_left.getCurrentPosition()) * 18.5 / 24.0 - 24 * COUNTS_PER_INCH) > 20) &&
-                            (Math.abs(Math.abs(front_right.getCurrentPosition()) * 18.5 / 24.0 - 24 * COUNTS_PER_INCH ) > 20) &&
+                    while ((Math.abs(Math.abs(back_left.getCurrentPosition())  - 24 * COUNTS_PER_INCH) > 20) &&
+                            (Math.abs(Math.abs(back_right.getCurrentPosition())  - 24 * COUNTS_PER_INCH ) > 20) &&
+                            (Math.abs(Math.abs(front_left.getCurrentPosition())  - 24 * COUNTS_PER_INCH) > 20) &&
+                            (Math.abs(Math.abs(front_right.getCurrentPosition())  - 24 * COUNTS_PER_INCH ) > 20) &&
                             opModeIsActive()) {
                         correction = checkDirection();
-                        back_left.setPower(-0.245 - correction);
+                        back_left.setPower(0.2 - correction);
                         back_right.setPower(0.2 + correction);
                         front_left.setPower(0.2 - correction);
-                        front_right.setPower(-0.245 + correction);
+                        front_right.setPower(0.2 + correction);
 
 
                     telemetry.addData("bL: ", back_left.getCurrentPosition());

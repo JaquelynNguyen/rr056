@@ -28,8 +28,8 @@ public class RedAlliancePipeline extends OpenCvPipeline {
 
      */
     static final Rect MID_ROI = new Rect(
-            new Point(275, 230),
-            new Point(350, 350)
+            new Point(205, 230),
+            new Point(285, 350)
     );
 
 
@@ -44,7 +44,7 @@ public class RedAlliancePipeline extends OpenCvPipeline {
     public RedAlliancePipeline(Telemetry t) {
         telemetry = t;
     }
-    static double PERCENT_COLOR_THRESHOLD = 0.60;
+    static double PERCENT_COLOR_THRESHOLD = 0.50;
 
     @Override
     public Mat processFrame(Mat input) {

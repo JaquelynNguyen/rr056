@@ -151,7 +151,7 @@ public class MeepMeepTesting {
             //    meepMeep.setBackground(img)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(redBot)
+                .addEntity(blueBot)
                 .start();
     }
 }
