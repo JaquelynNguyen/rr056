@@ -93,6 +93,9 @@ public class ActualTeleOp extends LinearOpMode {
         ToggleButtonReader turnReader = new ToggleButtonReader(
                 opController, GamepadKeys.Button.DPAD_RIGHT
         );
+        ToggleButtonReader climbReader = new ToggleButtonReader(
+                opController, GamepadKeys.Button.DPAD_UP
+        );
 
         GamepadEx driveController = new GamepadEx(gamepad1);
         ToggleButtonReader intakeReader = new ToggleButtonReader(
@@ -122,8 +125,8 @@ public class ActualTeleOp extends LinearOpMode {
         //false = close
         boolean clawopen = false;
         boolean climbing = false;
-        final double INTAKE_POSITION = 0.535;
-        final double OUTTAKE_POSITION = 0.1;
+        final double INTAKE_POSITION = 0.615;
+        final double OUTTAKE_POSITION = 0.2;
         boolean intakeState = false;
         boolean outtakeState = false;
         //false = back, true = front
@@ -145,9 +148,9 @@ public class ActualTeleOp extends LinearOpMode {
             // Put run blocks here.
             telemetry.addData("Status", "Initiallized");
             while (opModeIsActive()) {
-                double forward = 0.85 * gamepad1.left_stick_y;
-                double strafe = -0.85 * gamepad1.right_stick_x;
-                double rotate = 0.85 * 0.7 * gamepad1.left_stick_x;
+                double forward = 1 * gamepad1.left_stick_y;
+                double strafe = -1 * gamepad1.right_stick_x;
+                double rotate = 1 * 0.7 * gamepad1.left_stick_x;
                 double slides = -gamepad2.left_stick_y;
                 //double climb = -gamepad2.right_stick_y;
 
@@ -160,7 +163,7 @@ public class ActualTeleOp extends LinearOpMode {
 
                 //Shooter code?? todo: set shooter servos to shooting position
                 //dpad up = shoot
-                if (gamepad2.dpad_up) {
+                if (gamepad1.dpad_up) {
                     shooterServo.setPosition(-0.3);
                 }
 
@@ -182,16 +185,14 @@ public class ActualTeleOp extends LinearOpMode {
                  */
 
                 //climber
-                /*
-                if (gamepad1.dpad_up) {
+                if (gamepad2.dpad_up) {
                     climbing = true;
                 }
-                if (gamepad1.dpad_down) {
+                if (gamepad2.dpad_down) {
                     climbing = false;
                 }
 
 
-                 */
 /*
                 switch(v4bState) {
                     case V4B_START:
@@ -229,21 +230,20 @@ public class ActualTeleOp extends LinearOpMode {
 
                 //slide code
                 if (-gamepad2.left_stick_y < -0.2) {
-                    slide_left.setPower(.9);
-                    slide_right.setPower(-.9);
+                    slide_left.setPower(0.9);
+                    slide_right.setPower(-0.9);
                 } else if (-gamepad2.left_stick_y > 0.2) {
-                    slide_left.setPower(-.7);
-                    slide_right.setPower(.7);
-                }  else {
+                    slide_left.setPower(-1);
+                    slide_right.setPower(1);
+                } else if (climbing) {
+                    slide_left.setPower(.8);
+                    slide_right.setPower(-.8);
+                } else {
                     slide_left.setPower(0);
                     slide_right.setPower(0);
                 }
 
                 /*
-                else if (climbing) {
-                    slide_left.setPower(-.8);
-                    slide_right.setPower(.8);
-                }
                  */
 /*
 
@@ -269,10 +269,10 @@ public class ActualTeleOp extends LinearOpMode {
 
  */
                 if(gamepad1.left_trigger > 0.2) {
-                    intakeMotor.setPower(0.7);
+                    intakeMotor.setPower(1);
                     dropbox.setPower(1);
                 } else if (gamepad1.right_trigger > 0.2) {
-                    intakeMotor.setPower(-0.7);
+                    intakeMotor.setPower(-1);
                 } else {
                     intakeMotor.setPower(0);
                     if (-gamepad2.right_stick_y < -0.2) {

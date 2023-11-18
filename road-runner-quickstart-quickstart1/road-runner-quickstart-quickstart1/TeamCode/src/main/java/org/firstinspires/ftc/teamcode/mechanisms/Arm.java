@@ -17,8 +17,8 @@ public class Arm {
 
 
     public static class Presets {
-        public static final double INTAKE_POSITION = 0.545;
-        public static final double OUTTAKE_POSITION = 0.1;
+        public static final double INTAKE_POSITION = 0.615;
+        public static final double OUTTAKE_POSITION = 0.2;
     }
 
     public Arm(HardwareMap hardwareMap) {

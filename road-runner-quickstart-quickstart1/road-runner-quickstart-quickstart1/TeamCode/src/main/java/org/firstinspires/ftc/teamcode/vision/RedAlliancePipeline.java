@@ -78,14 +78,14 @@ public class RedAlliancePipeline extends OpenCvPipeline {
         //boolean stoneRight = false;
         if(stoneMid) {
             location = Location.MID;
-            telemetry.addData("stoneMid", "yayyyy");
+            telemetry.addData("Mid", "yayyyy");
         }
         else if (stoneRight) {
             location = Location.RIGHT;
-            telemetry.addData("stoneRight", "ok");
+            telemetry.addData("Right", "ok");
         } else {
             location = Location.LEFT;
-            telemetry.addData("uh oh", "no yellow");
+            telemetry.addData("Left", "Left");
         }
         telemetry.update();
 
