@@ -28,8 +28,8 @@ public class BlueAlliancePipeline extends OpenCvPipeline {
 
      */
     static final Rect MID_ROI = new Rect(
-            new Point(255, 250),
-            new Point(345, 350)
+            new Point(210, 250),
+            new Point(300, 350)
     );
 
 
@@ -76,7 +76,7 @@ public class BlueAlliancePipeline extends OpenCvPipeline {
         boolean stoneMid = midValue > PERCENT_COLOR_THRESHOLD;
         boolean stoneRight = rightValue > PERCENT_COLOR_THRESHOLD;
         //boolean stoneRight = false;
-        if(stoneMid) {
+        if(stoneMid && midValue > rightValue) {
             location = Location.MID;
             telemetry.addData("Mid", "yayyyy");
         }

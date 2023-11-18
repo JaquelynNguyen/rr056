@@ -17,7 +17,7 @@ public class Arm {
 
 
     public static class Presets {
-        public static final double INTAKE_POSITION = 0.615;
+        public static final double INTAKE_POSITION = 0.59;
         public static final double OUTTAKE_POSITION = 0.2;
     }
 

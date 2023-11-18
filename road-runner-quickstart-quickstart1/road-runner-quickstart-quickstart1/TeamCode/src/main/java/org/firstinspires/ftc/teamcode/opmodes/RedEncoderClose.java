@@ -136,7 +136,7 @@ public class RedEncoderClose extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
-        RedAlliancePipeline detector = new RedAlliancePipeline(telemetry);
+        BlueAlliancePipeline detector = new BlueAlliancePipeline(telemetry);
         camera.setPipeline(detector);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
@@ -149,6 +149,7 @@ public class RedEncoderClose extends LinearOpMode {
 
             }
         });
+
 
         telemetry.setMsTransmissionInterval(50);
 
@@ -185,37 +186,37 @@ public class RedEncoderClose extends LinearOpMode {
                 encoderFunction();
                 runtime.reset();
                 //move towards pole
-                target = 16;
+                target = 18;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5  - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(front_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         opModeIsActive()) {
                     correction = checkDirection();
-                    back_left.setPower(-0.45 - correction);
+                    back_left.setPower(-0.44 - correction);
                     back_right.setPower(0.45 + correction);
-                    front_left.setPower(0.45 - correction);
+                    front_left.setPower(0.46 - correction);
                     front_right.setPower(-0.45 + correction);
                 }
                 encoderFunction();
                 setPZero();
 
-                target = 37;
+                target = 38;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(front_right.getCurrentPosition()) * 24 / 21.5  - target * COUNTS_PER_INCH ) > 100) &&
                         opModeIsActive()) {
                     correction = checkDirection();
-                    back_left.setPower(0.45 - correction);
+                    back_left.setPower(0.46 - correction);
                     back_right.setPower(0.45 + correction);
-                    front_left.setPower(0.45 - correction);
+                    front_left.setPower(0.46 - correction);
                     front_right.setPower(0.45 + correction);
                 }
                 encoderFunction();
                 setPZero();
 
-                target = 16;
+                target = 14;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
@@ -336,17 +337,17 @@ public class RedEncoderClose extends LinearOpMode {
                 encoderFunction();
                 runtime.reset();
 
-                target = 37.5;
+                target = 38;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(front_right.getCurrentPosition()) * 24 / 21.5  - target * COUNTS_PER_INCH ) > 100) &&
                         opModeIsActive()) {
                     correction = checkDirection();
-                    back_left.setPower(0.45 - correction);
-                    back_right.setPower(0.45 + correction);
-                    front_left.setPower(0.45 - correction);
-                    front_right.setPower(0.45 + correction);
+                    back_left.setPower(0.44 - correction);
+                    back_right.setPower(0.46 + correction);
+                    front_left.setPower(0.44 - correction);
+                    front_right.setPower(0.46 + correction);
                 }
                 encoderFunction();
                 setPZero();
@@ -489,7 +490,7 @@ public class RedEncoderClose extends LinearOpMode {
                 encoderFunction();
                 setPZero();
 
-                target = 11;
+                target = 9;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition())  * 24 / 21.5  - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
@@ -518,10 +519,10 @@ public class RedEncoderClose extends LinearOpMode {
                 }
                 encoderFunction();
                 setPZero();
-                rotate(86, 0.45);
+                rotate(90, 0.45);
                 encoderFunction();
                 setPZero();
-                target = 8;
+                target = 6.5;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
