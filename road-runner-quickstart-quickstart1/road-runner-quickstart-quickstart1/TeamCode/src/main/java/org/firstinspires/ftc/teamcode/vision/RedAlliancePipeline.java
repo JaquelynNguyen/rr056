@@ -28,13 +28,13 @@ public class RedAlliancePipeline extends OpenCvPipeline {
 
      */
     static final Rect MID_ROI = new Rect(
-            new Point(205, 230),
+            new Point(205, 250),
             new Point(285, 350)
     );
 
 
     static final Rect RIGHT_ROI = new Rect(
-            new Point(590, 230),
+            new Point(590, 250),
             new Point(655, 350)
     );
 

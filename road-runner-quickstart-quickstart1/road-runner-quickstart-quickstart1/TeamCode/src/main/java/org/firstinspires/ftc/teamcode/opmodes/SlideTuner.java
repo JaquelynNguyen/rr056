@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.openftc.apriltag.AprilTagDetection;
 
 @Autonomous(name = "SlideTuner")
-//@Disabled
+@Disabled
 public class SlideTuner extends LinearOpMode {
     //Time
     private ElapsedTime runtime = new ElapsedTime();

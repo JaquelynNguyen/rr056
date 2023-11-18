@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
  * opmode only serves as an initial starting point.
  */
 @Autonomous(name = "CloseRed", group = "advanced")
-//@Disabled
+@Disabled
 public class CloseRed extends LinearOpMode {
     private Servo claw;
 

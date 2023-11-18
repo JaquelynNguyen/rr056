@@ -466,7 +466,22 @@ public class BlueEncoderClose extends LinearOpMode {
                 runtime.reset();
                 //move towards pole
 
-                target = 31;
+                target = 5;
+                while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5  - target * COUNTS_PER_INCH) > 100) &&
+                        (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
+                        (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
+                        (Math.abs(Math.abs(front_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
+                        opModeIsActive()) {
+                    correction = checkDirection();
+                    back_left.setPower(0.45 - correction);
+                    back_right.setPower(-0.45 + correction);
+                    front_left.setPower(-0.45 - correction);
+                    front_right.setPower(0.45 + correction);
+                }
+                encoderFunction();
+                setPZero();
+
+                target = 34;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition())  * 24 / 21.5  - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
@@ -481,7 +496,7 @@ public class BlueEncoderClose extends LinearOpMode {
                 encoderFunction();
                 setPZero();
 
-                target = 20;
+                target = 24;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition())  * 24 / 21.5  - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
@@ -496,7 +511,7 @@ public class BlueEncoderClose extends LinearOpMode {
                 encoderFunction();
                 setPZero();
 
-                target = 10;
+                target = 7;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
@@ -518,15 +533,15 @@ public class BlueEncoderClose extends LinearOpMode {
                         (Math.abs(Math.abs(front_right.getCurrentPosition()) * 24 / 21.5  - target * COUNTS_PER_INCH ) > 100) &&
                         opModeIsActive()) {
                     correction = checkDirection();
-                    back_left.setPower(0.45 - correction);
+                    back_left.setPower(0.4 - correction);
                     back_right.setPower(-0.45 + correction);
-                    front_left.setPower(-0.45 - correction);
+                    front_left.setPower(-0.5 - correction);
                     front_right.setPower(0.45 + correction);
                 }
                 encoderFunction();
                 setPZero();
 
-                target = 10;
+                target = 14;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition())  * 24 / 21.5  - target * COUNTS_PER_INCH) > 100) &&
@@ -541,7 +556,7 @@ public class BlueEncoderClose extends LinearOpMode {
                 encoderFunction();
                 setPZero();
                 //rightFoldServo.setPosition(-1);
-                rotate(-90, 0.45);
+                rotate(-89, 0.45);
                 target = 50;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
@@ -567,7 +582,7 @@ public class BlueEncoderClose extends LinearOpMode {
                 encoderFunction();
                 //move back a bit
 
-                target = 10;
+                target = 20;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition())  * 24 / 21.5  - target * COUNTS_PER_INCH) > 100) &&
@@ -595,7 +610,7 @@ public class BlueEncoderClose extends LinearOpMode {
                 encoderFunction();
                 //move back a bit
 
-                target = 10;
+                target = 15;
                 while ((Math.abs(Math.abs(back_left.getCurrentPosition())  * 24 / 21.5  - target * COUNTS_PER_INCH) > 100) &&
                         (Math.abs(Math.abs(back_right.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH ) > 100) &&
                         (Math.abs(Math.abs(front_left.getCurrentPosition()) * 24 / 21.5   - target * COUNTS_PER_INCH) > 100) &&
