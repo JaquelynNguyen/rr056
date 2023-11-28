@@ -125,7 +125,7 @@ public class ActualTeleOp extends LinearOpMode {
         //false = close
         boolean clawopen = false;
         boolean climbing = false;
-        final double INTAKE_POSITION = 0.615;
+        final double INTAKE_POSITION = 0.6;
         final double OUTTAKE_POSITION = 0.2;
         boolean intakeState = false;
         boolean outtakeState = false;

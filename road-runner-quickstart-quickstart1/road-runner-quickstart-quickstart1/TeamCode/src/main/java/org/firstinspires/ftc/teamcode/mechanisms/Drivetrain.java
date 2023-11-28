@@ -98,6 +98,7 @@ public class Drivetrain {
         back_left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         back_right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         front_right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        target = 0;
     }
     public void setDrivePowers(double power){
         front_left.setPower(power);
